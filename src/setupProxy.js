@@ -1,5 +1,5 @@
 const proxy = require('http-proxy-middleware')
 
 module.exports = function(app) {
-    app.use(proxy('/api', { target: 'https://api-v3.igdb.com' }))
+    app.use(proxy('/', { target: 'https://api-v3.igdb.com' }))
 }

@@ -1,4 +1,4 @@
-// const url = 'https://api-v3.igdb.com'
+const url = 'https://api-v3.igdb.com'
 const API_KEY = process.env.REACT_APP_API_KEY
 
 const searchGames = (text) => {
@@ -11,7 +11,7 @@ const searchGames = (text) => {
 }
 
 const fetchPopularGames = () => {
-  return fetch('/games/?fields=name,genres,cover,platforms,first_release_date,summary,aggregated_rating,similar_games&order=popularity:desc&filter[aggregated_rating][gt]=75&filter[cover][gt]=1', {
+  return fetch(`/games/?fields=name,genres,cover,platforms,first_release_date,summary,aggregated_rating,similar_games&order=popularity:desc&filter[aggregated_rating][gt]=75&filter[cover][gt]=1`, {
     headers: {
       'user-key': API_KEY
     },
