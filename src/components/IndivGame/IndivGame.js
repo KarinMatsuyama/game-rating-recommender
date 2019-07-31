@@ -28,7 +28,7 @@ class IndivGame extends Component {
           .then(jsonResponse => image = jsonResponse[0].url.split('/'))
           .then(_response => this.setState({imageUrl: `https://images.igdb.com/igdb/image/upload/t_cover_big/${image[image.length - 1]}`}))
       } else {
-        this.setState({imageUrl: null})
+        this.setState({imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/No_image_available_450_x_600.svg/450px-No_image_available_450_x_600.svg.png'})
       }
     }
   }
