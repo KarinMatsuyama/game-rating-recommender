@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "http-proxy-middleware": "^0.19.1",
     "query-string": "^6.8.1",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.9",
@@ -38,6 +39,5 @@
   },
   "devDependencies": {
     "jest-util": "^23.4.0"
-  },
-  "proxy": "https://api-v3.igdb.com"
+  }
 }
