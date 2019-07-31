@@ -72,7 +72,7 @@ class GamePage extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.gameID !== this.props.match.params.gameID) {
-      this.setState({gameId: this.props.match.params.gameID}, 
+      this.setState({gameId: this.props.match.params.gameID, hasRated: false}, 
         () => {
           let genresPlatforms = {
             genreIds: [],
@@ -128,8 +128,6 @@ class GamePage extends Component {
   }
 
   render() {
-    console.log(this.state)
-    console.log(this.props)
     return (
       <div>
         {this.state.name && 

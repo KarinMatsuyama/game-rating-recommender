@@ -34,7 +34,7 @@ class IndivGame extends Component {
   }
 
   render() {
-    const {id, name, criticRating, genres, platforms, releaseDate, summary, similarGames} = this.props
+    const {id, name, criticRating} = this.props
     return (
       <Col className="px-1 py-4">
         <Card className="card-element">

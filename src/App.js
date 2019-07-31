@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import { Router, Route } from 'react-router-dom'
+import { Router, Route, Switch } from 'react-router-dom'
 import history from './history'
 import HomePage from './pages/HomePage'
 import GamePage from './pages/GamePage'
@@ -12,6 +12,7 @@ import RecommendationsPage from './pages/RecommendationsPage'
 import AppNav from './components/AppNav/AppNav'
 import RatingForm from './components/RatingForm/RatingForm'
 import RatingUpdateForm from './components/RatingUpdateForm/RatingUpdateForm'
+import NotFoundPage from './pages/NotFoundPage'
 
 function App() {
   const [games, setGames] = React.useState([])
@@ -24,9 +25,9 @@ function App() {
   return (
     <div className="App">
       <Router history={history}>
-        <div>
-          <AppNav username={username} setSearchInput={setSearchInput} setToken={setToken} setUsername={setUsername} />
-          <div className="px-3 py-2">
+        <AppNav username={username} setSearchInput={setSearchInput} setToken={setToken} setUsername={setUsername} />
+        <div className="px-3 py-2">
+        <Switch>
           <Route 
             exact path="/"
             render={props => <HomePage {...props} setGames={setGames} games={games} setComingGames={setComingGames} comingGames={comingGames} />}
@@ -63,11 +64,12 @@ function App() {
             exact path="/signup"
             render={props => <SignupPage {...props} token={token} setUsername={setUsername} setToken={setToken} loginError={loginError} setLoginError={setLoginError} />}
           />
-          </div>
+          <Route component={NotFoundPage} />
+        </Switch>
         </div>
       </Router>
     </div>
   )
 }
 
-export default App;
+export default App
