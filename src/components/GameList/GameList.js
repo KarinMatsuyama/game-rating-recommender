@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Carousel } from "react-bootstrap";
+import { Container, Row, Carousel, Col } from "react-bootstrap";
 import IndivGame from '../IndivGame/IndivGame'
 import './GameList.css'
 
@@ -17,12 +17,18 @@ function GameList(props) {
         <Carousel interval={null} indicators={false} className="carousel">
           <Carousel.Item className="pl-5 pr-5">
             <Row>
-            {games().slice(0,5)}
+            {props.games.length >= 5 ? 
+              games().slice(0,5) : 
+              games().concat(Array(5 - props.games.length).fill(<Col></Col>))
+            }
             </Row>
           </Carousel.Item>          
           <Carousel.Item className="pl-5 pr-5">
             <Row>
-            {games().slice(5)}
+            {props.games.length < 10 ? 
+              games().slice(5).concat(Array(10 - props.games.length).fill(<Col></Col>)) : 
+              games().slice(5)
+            }
             </Row>
           </Carousel.Item>
         </Carousel>
