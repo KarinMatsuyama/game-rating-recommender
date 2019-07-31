@@ -1,4 +1,4 @@
-const url = 'https://api-v3.igdb.com'
+// const url = 'https://api-v3.igdb.com'
 const API_KEY = process.env.REACT_APP_API_KEY
 
 const searchGames = (text) => {
