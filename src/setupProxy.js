@@ -1,5 +1,6 @@
+const express = require('express')
 const proxy = require('http-proxy-middleware')
 
-module.exports = function(app) {
-    app.use(proxy('/', { target: 'https://api-v3.igdb.com' }))
-}
+const app = express()
+app.use('/games', proxy({ target: 'https://api-v3.igdb.com', changeOrigin: true }))
+app.listen('video-game-recommender.herokuapp.com')
