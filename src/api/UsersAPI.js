@@ -1,5 +1,5 @@
 const login = (credentialsObj) => {
-  return fetch('http://localhost:8000/token-auth/', {
+  return fetch('https://game-recommender-backend.herokuapp.com/token-auth/', {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -9,7 +9,7 @@ const login = (credentialsObj) => {
 }
 
 const getCurrentUser = (token) => {
-  return fetch('http://localhost:8000/accounts/current-user/', {
+  return fetch('https://game-recommender-backend.herokuapp.com/accounts/current-user/', {
     headers: {
       'Authorization': `JWT ${token}`
     }
@@ -18,7 +18,7 @@ const getCurrentUser = (token) => {
 }
 
 const signup = (credentialsObj) => {
-  return fetch('http://localhost:8000/accounts/users', {
+  return fetch('https://game-recommender-backend.herokuapp.com/accounts/users', {
     headers: {
       'Content-Type': 'application/json'
     },

@@ -1,0 +1,14 @@
+.userRatingList {
+  padding-left: 8.7% !important;
+  padding-right: 8.7% !important;
+}
+
+.rate-link {
+  color: aliceblue;
+  font-weight: bold;
+}
+
+.rate-link:hover {
+  color: aliceblue !important;
+  text-decoration: none !important;
+}

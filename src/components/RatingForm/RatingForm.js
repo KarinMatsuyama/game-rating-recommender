@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import UsersAPI from '../../api/UsersAPI'
 import RatingsAPI from '../../api/RatingsAPI'
 import { Form, Button } from 'react-bootstrap'
+import './RatingForm.css'
 
 class RatingForm extends Component {
   state = {
@@ -43,9 +44,9 @@ class RatingForm extends Component {
     let gameObj = {
       name: this.props.location.state.name,
       genres: this.props.location.state.genres.join(','),
-      critic_score: this.props.location.state.criticRating,
+      critic_score: this.props.location.state.criticRating !== 'N/A' ? this.props.location.state.criticRating : null,
       platforms: this.props.location.state.platforms.join(','),
-      igdb_id: parseInt(this.state.igdbId)
+      igdbid: parseInt(this.state.igdbId)
     }
     return RatingsAPI.createGame(gameObj, this.props.token)
       .then(response => response.json())
@@ -83,15 +84,14 @@ class RatingForm extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
-      <div>
+      <div className="formDiv mt-5 mx-5 text-left">
         {!this.props.token && <Redirect to="/login" />}
         {this.state.ratingSaved && <Redirect to={`/games/${this.state.igdbId}`} />}
         {this.state.hasRated && <Redirect to={`/edit-rating/${this.state.igdbId}/${this.state.ratingId}`} />}
         <h2>Leave Your Rating</h2>
-        <Form onSubmit={(event) => this.saveForm(event)}>
-          <Form.Group>
+        <Form className="py-4" onSubmit={(event) => this.saveForm(event)}>
+          <Form.Group className="pt-3">
             <Form.Label>Select Rating</Form.Label>
             <Form.Control required name="rating" as="select">
               <option></option>
@@ -102,15 +102,15 @@ class RatingForm extends Component {
               <option>5</option>
             </Form.Control>
           </Form.Group>
-          <Form.Group>
+          <Form.Group className="pt-3">
             <Form.Label>Headline</Form.Label>
             <Form.Control name="title" type="text" placeholder="Enter headline (optional)" />
           </Form.Group>
-          <Form.Group>
+          <Form.Group className="pt-3">
             <Form.Label>Comment</Form.Label>
             <Form.Control name="comment" as="textarea" rows="3" placeholder="Enter comment (optional)" />
           </Form.Group>
-          <Button type="submit">Submit</Button>
+          <Button className="mt-5 font-weight-bold" variant="light" type="submit">Submit</Button>
         </Form>
       </div>
     )

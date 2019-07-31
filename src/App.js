@@ -1,5 +1,5 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import './App.css'
 import { Router, Route } from 'react-router-dom'
 import history from './history'
 import HomePage from './pages/HomePage'
@@ -8,26 +8,28 @@ import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
 import SearchResultPage from './pages/SearchResultPage'
 import CurrentUserRatingsPage from './pages/CurrentUserRatings'
+import RecommendationsPage from './pages/RecommendationsPage'
 import AppNav from './components/AppNav/AppNav'
 import RatingForm from './components/RatingForm/RatingForm'
 import RatingUpdateForm from './components/RatingUpdateForm/RatingUpdateForm'
 
 function App() {
   const [games, setGames] = React.useState([])
-  const [username, setUsername] = React.useState(null)
-  const [token, setToken] = React.useState(null)
+  const [comingGames, setComingGames] = React.useState([])
+  const [username, setUsername] = React.useState(localStorage.getItem('username'))
+  const [token, setToken] = React.useState(localStorage.getItem('token'))
   const [loginError, setLoginError] = React.useState('')
   const [searchInput, setSearchInput] = React.useState('')
 
   return (
     <div className="App">
-    {console.log(username, token)}
       <Router history={history}>
         <div>
-          <AppNav username={username} setSearchInput={setSearchInput} />
+          <AppNav username={username} setSearchInput={setSearchInput} setToken={setToken} setUsername={setUsername} />
+          <div className="px-3 py-2">
           <Route 
             exact path="/"
-            render={props => <HomePage {...props} setGames={setGames} games={games} />}
+            render={props => <HomePage {...props} setGames={setGames} games={games} setComingGames={setComingGames} comingGames={comingGames} />}
           />
           <Route 
             exact path="/search"
@@ -50,6 +52,10 @@ function App() {
             render={props => <CurrentUserRatingsPage {...props} token={token} />}
           />
           <Route 
+            exact path="/recommendations"
+            render={props => <RecommendationsPage {...props} token={token} username={username} />}
+          />
+          <Route 
             exact path="/login"
             render={props => <LoginPage {...props} token={token} setUsername={setUsername} setToken={setToken} loginError={loginError} setLoginError={setLoginError} />}
           />
@@ -57,10 +63,11 @@ function App() {
             exact path="/signup"
             render={props => <SignupPage {...props} token={token} setUsername={setUsername} setToken={setToken} loginError={loginError} setLoginError={setLoginError} />}
           />
+          </div>
         </div>
       </Router>
     </div>
-  );
+  )
 }
 
 export default App;

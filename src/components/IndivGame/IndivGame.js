@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import IgdbAPI from '../../api/IgdbAPI'
 import { Link } from 'react-router-dom'
+import { Col, Card } from 'react-bootstrap'
+import IgdbAPI from '../../api/IgdbAPI'
+import './IndivGame.css'
 
 class IndivGame extends Component {
   state = {
@@ -34,11 +36,15 @@ class IndivGame extends Component {
   render() {
     const {id, name, criticRating, genres, platforms, releaseDate, summary, similarGames} = this.props
     return (
-      <div>
-        <h2>{name}</h2>
-        <h3>Critic Score: {criticRating}</h3>
-        <Link to={{pathname: `/games/${id}`, state:{id: id, name: name, criticRating: criticRating, genres: genres, platforms: platforms, releaseDate: releaseDate, summary: summary, similarGames: similarGames, coverUrl: this.state.imageUrl}}}><img src={this.state.imageUrl} alt="cover image" /></Link>
-      </div>
+      <Col className="px-1 py-4">
+        <Card className="card-element">
+          <Link to={`/games/${id}`}><img className="cover-img" src={this.state.imageUrl} alt="cover image"/></Link>
+          <Card.Body className="pl-3 pr-1 py-2 text-left card-body">
+          <Card.Title className="title mr-0">{name}</Card.Title>
+          <Card.Text>Critic Score: {criticRating}</Card.Text>
+          </Card.Body>
+        </Card>
+      </Col>
     )
   }
 }

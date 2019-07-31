@@ -1,0 +1,25 @@
+.navBrand {
+  font-weight: bold;
+  font-size: 1.8rem;
+  color: aliceblue;
+}
+
+.navBrand:hover {
+  color: aliceblue;
+  text-decoration: none;
+}
+
+.navText {
+  color: aliceblue;
+  font-size: 1.1rem;
+}
+
+.navText:hover {
+  color: aliceblue;
+  text-decoration: none;
+}
+
+.navbar-text {
+  color: aliceblue !important;
+  font-size: 1.1rm !important;
+}

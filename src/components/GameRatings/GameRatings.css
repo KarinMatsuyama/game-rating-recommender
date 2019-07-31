@@ -1,0 +1,13 @@
+.list-group-item {
+  background-color: rgb(34, 38, 43) !important;
+}
+
+.ratings-title {
+  padding-left: 10%;
+  text-align: left;
+}
+
+.rating-list {
+  padding-left: 9% !important;
+  padding-right: 9% !important;
+}

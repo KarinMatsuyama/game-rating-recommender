@@ -1,0 +1,16 @@
+.form-label {
+  font-size: 1.2rem
+}
+
+.signup {
+  color: aqua;
+}
+
+.signup:hover {
+  color: aqua;
+  text-decoration: none;
+}
+
+.form-input {
+  width: 30% !important;
+}

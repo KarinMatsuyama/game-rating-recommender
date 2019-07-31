@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import RatingsAPI from '../../api/RatingsAPI'
 import { Form, Button } from 'react-bootstrap'
+import './RatingUpdateForm.css'
 
 class RatingUpdateForm extends Component {
   state = {
@@ -46,13 +47,13 @@ class RatingUpdateForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className="formDiv mt-5 mx-5 text-left">
         {!this.props.token && <Redirect to="/login" />}
         {this.state.ratingSaved && <Redirect to={`/games/${this.state.igdbId}`} />}
         <h2>Update Rating</h2>
         {this.state.ratingObj.rating &&
-        <Form onSubmit={(event) => this.saveForm(event)}>
-          <Form.Group>
+        <Form className="py-4" onSubmit={(event) => this.saveForm(event)}>
+          <Form.Group className="pt-3">
             <Form.Label>Select Rating</Form.Label>
             <Form.Control required name="rating" as="select" defaultValue={this.state.ratingObj.rating} >
               <option>1</option>
@@ -62,18 +63,18 @@ class RatingUpdateForm extends Component {
               <option>5</option>
             </Form.Control>
           </Form.Group>
-          <Form.Group>
+          <Form.Group className="pt-3">
             <Form.Label>Headline</Form.Label>
             <Form.Control name="title" type="text" defaultValue={this.state.ratingObj.title} placeholder="Enter headline (optional)" />
           </Form.Group>
-          <Form.Group>
+          <Form.Group className="pt-3">
             <Form.Label>Comment</Form.Label>
             <Form.Control name="comment" as="textarea" rows="3" defaultValue={this.state.ratingObj.comment} placeholder="Enter comment (optional)" />
           </Form.Group>
-          <Button variant="primary" type="submit">Submit</Button>
+          <Button className="mt-5 font-weight-bold" variant="light" type="submit">Submit</Button>
         </Form>
         }
-        <Button variant="outline-warning" onClick={(event) => {this.deleteRating(event)}}>Delete</Button>
+        <Button className="mt-3 font-weight-bold" variant="light" variant="outline-warning" onClick={(event) => {this.deleteRating(event)}}>Delete This Rating</Button>
       </div>
     )
   }

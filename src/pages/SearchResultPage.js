@@ -23,7 +23,7 @@ class SearchResultPage extends Component {
   render() {
     return (
       <div>
-        <p>Search Results</p>
+        <h2 className="sectionTitle">SEARCH RESULTS</h2>
         <GameList games={this.props.games} />
       </div>
     )

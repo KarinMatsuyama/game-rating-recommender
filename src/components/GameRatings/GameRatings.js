@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import RatingsAPI from '../../api/RatingsAPI'
 import { ListGroup } from 'react-bootstrap'
+import './GameRatings.css'
 
 class GameRatings extends Component {
   state = {
@@ -8,7 +9,7 @@ class GameRatings extends Component {
   }
 
   componentDidMount() {
-    RatingsAPI.fetchRatingsByGameId(this.props.ratingGameId, this.props.token)
+    RatingsAPI.fetchRatingsByGameId(this.props.ratingGameId)
       .then(response => response.json())
       .then(jsonResponse => this.setState({ratings: jsonResponse}))
   }
@@ -16,11 +17,11 @@ class GameRatings extends Component {
   ratingList() {
     return this.state.ratings.map((ratingObj, index) => {
       return (
-        <ListGroup.Item key={index}>
+        <ListGroup.Item className="text-left" key={index}>
           <h3>{ratingObj.rating} / 5</h3>
           <h4>{ratingObj.title}</h4>
-          <p>{ratingObj.comment}</p>
-          <p>rated on {ratingObj['published_date']} by {ratingObj.username}</p>
+          <h5>{ratingObj.comment}</h5>
+          <p className="mb-1">Rated on {ratingObj['published_date'].split('T')[0]} by {ratingObj.username}</p>
         </ListGroup.Item>
       )
     })
@@ -28,9 +29,9 @@ class GameRatings extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Ratings</h2>
-        <ListGroup variant="flush">
+      <div className="pb-5">
+        <h2 className="ratings-title py-3">RATINGS</h2>
+        <ListGroup className='rating-list' variant="flush">
           {this.ratingList()}
         </ListGroup>
       </div>

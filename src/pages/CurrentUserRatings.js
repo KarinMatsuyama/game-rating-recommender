@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import UsersAPI from '../api/UsersAPI'
 import RatingsAPI from '../api/RatingsAPI'
 import { ListGroup } from 'react-bootstrap'
+import './HomePage.css'
+import './CurrentUserRating.css'
 
 class CurrentUserRatingsPage extends Component {
   state = {
@@ -39,11 +41,11 @@ class CurrentUserRatingsPage extends Component {
     return this.state.ratingGamePairs.map((ratingGame, index) => {
       return (
         <ListGroup.Item key={index}>
-          <h3><Link to={`/games/${ratingGame.game.igdbid}`}>{ratingGame.game.name}</Link></h3>
+          <h3><Link className="rate-link" to={`/games/${ratingGame.game.igdbid}`}>{ratingGame.game.name}</Link></h3>
           <h4>{ratingGame.rating} / 5</h4>
-          <h4>{ratingGame.commentTitle}</h4>
-          <p>{ratingGame.comment}</p>
-          <p>rated on {ratingGame.publishedDate}</p>
+          <h5>{ratingGame.commentTitle}</h5>
+          <h5>{ratingGame.comment}</h5>
+          <p>Rated on {ratingGame.publishedDate.split('T')[0]}</p>
         </ListGroup.Item>
       )
     })
@@ -52,8 +54,9 @@ class CurrentUserRatingsPage extends Component {
   render() {
     return (
       <div>
-        <h2>Your Ratings</h2>
-          <ListGroup variant="flush">
+        {!this.props.token && <Redirect to="/login" />}
+        <h2 className="sectionTitle pb-3">Your Ratings</h2>
+          <ListGroup className="userRatingList text-left" variant="flush">
             {this.ratingList()}
           </ListGroup>
       </div>

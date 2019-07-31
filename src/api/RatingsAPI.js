@@ -1,19 +1,11 @@
-const url = "http://localhost:8000/video-games"
+const url = "https://game-recommender-backend.herokuapp.com/video-games"
 
-const fetchGameByIgdbId = (igdbId, token) => {
-  return fetch(`${url}/games?igdbid=${igdbId}`, {
-    headers: {
-      'Authorization': `JWT ${token}`
-    }
-  })
+const fetchGameByIgdbId = (igdbId) => {
+  return fetch(`${url}/games?igdbid=${igdbId}`)
 }
 
-const fetchGameById = (id, token) => {
-  return fetch(`${url}/games/${id}/`, {
-    headers: {
-      'Authorization': `JWT ${token}`
-    }
-  })
+const fetchGameById = (id) => {
+  return fetch(`${url}/games/${id}/`)
   .then(reponse => reponse.json())
 }
 
@@ -67,16 +59,24 @@ const fetchRatingsById = (id, token) => {
   })
 }
 
-const fetchRatingsByGameId = (gameId, token) => {
-  return fetch(`${url}/ratings?game=${gameId}`, {
+const fetchRatingsByGameId = (gameId) => {
+  return fetch(`${url}/ratings?game=${gameId}`)
+}
+
+const fetchRatingsForCurrentUser = (userId, token) => {
+  return fetch(`${url}/ratings?author=${userId}`, {
     headers: {
       'Authorization': `JWT ${token}`
     }
   })
 }
 
-const fetchRatingsForCurrentUser = (userId, token) => {
-  return fetch(`${url}/ratings?author=${userId}`, {
+const fetchAverageRating = (gameId) => {
+  return fetch(`${url}/games/${gameId}/average-rating`)
+}
+
+const fetchRecommendations = (token) => {
+  return fetch(`${url}/clusters/recommendations/`, {
     headers: {
       'Authorization': `JWT ${token}`
     }
@@ -93,4 +93,6 @@ export default {
   updateRating: updateRating,
   deleteRating: deleteRating,
   fetchRatingsById: fetchRatingsById,
+  fetchAverageRating: fetchAverageRating,
+  fetchRecommendations: fetchRecommendations,
 }

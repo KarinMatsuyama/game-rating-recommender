@@ -19,6 +19,16 @@ const fetchPopularGames = () => {
     .then(response => response.json())
 }
 
+const fetchComingSoon = () => {
+  let today = parseInt(Date.now()/1000)
+  return fetch(`/games/?fields=name,genres,cover,platforms,first_release_date,summary,aggregated_rating,similar_games&order=date:asc&filter[first_release_date][gt]=${today}&filter[cover][gt]=1`, {
+    headers: {
+      'user-key': API_KEY
+    },
+  })
+    .then(response => response.json())
+}
+
 const fetchGamesById = (idArr) => {
   return fetch(`/games/${idArr.join(',')}?fields=name,genres,cover,platforms,first_release_date,summary,aggregated_rating,similar_games`, {
     headers: {
@@ -58,6 +68,7 @@ const fetchPlatforms = (platformIdsArr) => {
 export default {
   searchGames: searchGames,
   fetchPopularGames: fetchPopularGames,
+  fetchComingSoon: fetchComingSoon,
   fetchCover: fetchCover,
   fetchGenres: fetchGenres,
   fetchPlatforms: fetchPlatforms,
