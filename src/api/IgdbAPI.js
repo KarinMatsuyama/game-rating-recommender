@@ -38,8 +38,8 @@ const fetchGamesById = (idArr) => {
     .then(response => response.json())
 }
 
-const fetchCover = (coverId) => {
-  return fetch(`/covers/${coverId}?fields=url`, {
+const fetchCover = (coverIdsArr) => {
+  return fetch(`/covers/${coverIdsArr.join(',')}?fields=game,url`, {
     headers: {
       'user-key': API_KEY
     },

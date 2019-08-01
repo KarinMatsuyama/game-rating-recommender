@@ -14,9 +14,9 @@ class HomePage extends Component {
     return (
       <div className="pb-5">
         <h2 className="sectionTitle">POPULAR GAMES</h2>
-        <GameList games={this.props.games} />
+        {this.props.games.length > 0 && <GameList games={this.props.games} />}
         <h2 className="sectionTitle">COMING SOON</h2>
-        <GameList games={this.props.comingGames} />
+        {this.props.games.length > 0 && <GameList games={this.props.comingGames} />}
       </div>
     )
   }

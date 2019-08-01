@@ -17,9 +17,11 @@ class GameDetail extends Component {
       .then(jsonResponse => this.setState({games: jsonResponse}))
     let image = []
     if (this.props.coverId) {
-      IgdbAPI.fetchCover(this.props.coverId)    
+      IgdbAPI.fetchCover([this.props.coverId])    
         .then(jsonResponse => image = jsonResponse[0].url.split('/'))
         .then(_response => this.setState({imageUrl: `https://images.igdb.com/igdb/image/upload/t_cover_big/${image[image.length - 1]}`}))
+    } else {
+      this.setState({imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/No_image_available_450_x_600.svg/450px-No_image_available_450_x_600.svg.png'})
     }
     if (this.props.ratingGameId) {
       RatingsAPI.fetchAverageRating(this.props.ratingGameId)
@@ -34,11 +36,11 @@ class GameDetail extends Component {
         .then(jsonResponse => this.setState({games: jsonResponse}))
       let image = []
       if (this.props.coverId) {
-        IgdbAPI.fetchCover(this.props.coverId)    
+        IgdbAPI.fetchCover([this.props.coverId])    
           .then(jsonResponse => image = jsonResponse[0].url.split('/'))
           .then(_response => this.setState({imageUrl: `https://images.igdb.com/igdb/image/upload/t_cover_big/${image[image.length - 1]}`}))
       } else {
-        this.setState({imageUrl: null})
+        this.setState({imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/No_image_available_450_x_600.svg/450px-No_image_available_450_x_600.svg.png'})
       }
       if (this.props.ratingGameId) {
         RatingsAPI.fetchAverageRating(this.props.ratingGameId)
