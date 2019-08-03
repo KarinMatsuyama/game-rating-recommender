@@ -10,7 +10,7 @@ class IndivGame extends Component {
     return (
       <Col className="px-1 py-4">
         <Card className="card-element">
-          <Link to={`/games/${id}`}><img className="cover-img" src={cover} alt="cover image"/></Link>
+          <Link to={`/game/${id}`}><img className="cover-img" src={cover} alt="cover image"/></Link>
           <Card.Body className="pl-3 pr-1 py-2 text-left card-body">
           <Card.Title className="title mr-0">{name}</Card.Title>
           <Card.Text>Critic Score: {criticRating}</Card.Text>

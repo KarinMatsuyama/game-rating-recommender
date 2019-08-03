@@ -41,7 +41,7 @@ class CurrentUserRatingsPage extends Component {
     return this.state.ratingGamePairs.map((ratingGame, index) => {
       return (
         <ListGroup.Item key={index}>
-          <h3><Link className="rate-link" to={`/games/${ratingGame.game.igdbid}`}>{ratingGame.game.name}</Link></h3>
+          <h3><Link className="rate-link" to={`/game/${ratingGame.game.igdbid}`}>{ratingGame.game.name}</Link></h3>
           <h4>{ratingGame.rating} / 5</h4>
           <h5>{ratingGame.commentTitle}</h5>
           <h5>{ratingGame.comment}</h5>

@@ -37,7 +37,7 @@ function App() {
             render={props => <SearchResultPage {...props} setGames={setGames} games={games} searchInput={searchInput} />}
           />
           <Route 
-            exact path="/games/:gameID"
+            exact path="/game/:gameID"
             render={props => <GamePage {...props} setGames={setGames} games={games} token={token} />}
           />
           <Route 

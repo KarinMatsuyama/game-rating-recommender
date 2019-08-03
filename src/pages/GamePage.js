@@ -48,7 +48,7 @@ class GamePage extends Component {
       .then(_res => {
         genresPlatforms.genreIds && IgdbAPI.fetchGenres(genresPlatforms.genreIds)
           .then(jsonResponse => this.setState({genres: jsonResponse}))
-        IgdbAPI.fetchPlatforms(genresPlatforms.platformIds)
+          genresPlatforms.platformIds && IgdbAPI.fetchPlatforms(genresPlatforms.platformIds)
           .then(jsonResponse => this.setState({platforms: jsonResponse}))
       })
     
@@ -128,6 +128,8 @@ class GamePage extends Component {
   }
 
   render() {
+    console.log(this.state)
+    console.log(this.props.match.params.gameID)
     return (
       <div>
         {this.state.name && 
