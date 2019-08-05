@@ -13,7 +13,7 @@ class GameDetail extends Component {
   }
 
   componentDidMount = () => {
-    IgdbAPI.fetchGamesById(this.props.similarGameIds)
+    this.props.similarGameIds && IgdbAPI.fetchGamesById(this.props.similarGameIds)
       .then(jsonResponse => this.setState({games: jsonResponse}))
     let image = []
     if (this.props.coverId) {
@@ -32,7 +32,7 @@ class GameDetail extends Component {
 
   componentDidUpdate = (prevProps) => {
     if (prevProps !== this.props) {
-      IgdbAPI.fetchGamesById(this.props.similarGameIds)
+      this.props.similarGameIds && IgdbAPI.fetchGamesById(this.props.similarGameIds)
         .then(jsonResponse => this.setState({games: jsonResponse}))
       let image = []
       if (this.props.coverId) {

@@ -51,7 +51,7 @@ class GameList extends Component {
         <Container fluid={true}>
           <Carousel interval={null} indicators={false} className="carousel">
             <Carousel.Item className="pl-5 pr-5">
-              <Row>
+              <Row className="justify-content-center">
               {this.props.games.length >= 5 ? 
                 this.games().slice(0,5) : 
                 this.games().concat(Array(5 - this.props.games.length).fill(<Col></Col>))
@@ -59,7 +59,7 @@ class GameList extends Component {
               </Row>
             </Carousel.Item>          
             <Carousel.Item className="pl-5 pr-5">
-              <Row>
+              <Row className="justify-content-center">
               {this.props.games.length < 10 ? 
                 this.games().slice(5).concat(Array(10 - this.props.games.length).fill(<Col></Col>)) : 
                 this.games().slice(5)
