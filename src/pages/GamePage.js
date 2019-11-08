@@ -128,8 +128,6 @@ class GamePage extends Component {
   }
 
   render() {
-    console.log(this.state)
-    console.log(this.props.match.params.gameID)
     return (
       <div>
         {this.state.name && 
@@ -148,7 +146,7 @@ class GamePage extends Component {
           </EmailShareButton>
         </Nav>
 
-        {this.state.ratingGameId != null && 
+        {this.state.ratingGameId !== null && 
           <GameDetail token={this.props.token} ratingGameId={this.state.ratingGameId} name={this.state.name} criticRating={this.state.criticRating} releaseDate={this.state.releaseDate} summary={this.state.summary} coverId={this.state.coverId} genres={this.state.genres.map(genreObj => genreObj.name)} platforms={this.state.platforms.map(platformObj => platformObj.name)} similarGameIds={this.state.similarGameIds} />
         }
 

@@ -11,8 +11,10 @@ class GameVideo extends Component {
   componentDidMount() {
     YouTubeAPI.fetchVideoByKeyword(this.props.name + ' trailer')
       .then(jsonResponse => jsonResponse.items.map(item => {this.setState({videoIds: [...this.state.videoIds, item.id.videoId]})}))
-    YouTubeAPI.fetchVideoByKeyword(this.props.name + ' gameplay')
-      .then(jsonResponse => jsonResponse.items.map(item => {this.setState({videoIds: [...this.state.videoIds, item.id.videoId]})}))
+      .then(_res => {
+        YouTubeAPI.fetchVideoByKeyword(this.props.name + ' gameplay')
+          .then(jsonResponse => jsonResponse.items.map(item => {this.setState({videoIds: [...this.state.videoIds, item.id.videoId]})}))
+      })
   }
 
   componentDidUpdate(prevProps) {
@@ -20,8 +22,10 @@ class GameVideo extends Component {
       this.setState({videoIds: []}, () => {
         YouTubeAPI.fetchVideoByKeyword(this.props.name + ' trailer')
           .then(jsonResponse => jsonResponse.items.map(item => {this.setState({videoIds: [...this.state.videoIds, item.id.videoId]})}))
-        YouTubeAPI.fetchVideoByKeyword(this.props.name + ' gameplay')
-          .then(jsonResponse => jsonResponse.items.map(item => {this.setState({videoIds: [...this.state.videoIds, item.id.videoId]})}))
+          .then(_res => {
+            YouTubeAPI.fetchVideoByKeyword(this.props.name + ' gameplay')
+              .then(jsonResponse => jsonResponse.items.map(item => {this.setState({videoIds: [...this.state.videoIds, item.id.videoId]})}))
+          })
       })
     }
   }
@@ -29,7 +33,7 @@ class GameVideo extends Component {
   videos = () => {
     return this.state.videoIds.map((videoId, index) => {return (
       <Carousel.Item key={index}>
-        <iframe type="text/html" width="720" height="405" allow="autoplay" src={`https://www.youtube.com/embed/${videoId}?controls=0&modestbranding=1&color=white&autoplay=1`} frameBorder="0"></iframe>
+        <iframe type="text/html" width="720" height="405" allow="autoplay" src={`https://www.youtube.com/embed/${videoId}?controls=0&modestbranding=1&color=white`} frameBorder="0"></iframe>
       </Carousel.Item>
     )})
   }
