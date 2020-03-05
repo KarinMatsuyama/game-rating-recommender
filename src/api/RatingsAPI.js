@@ -83,6 +83,10 @@ const fetchRecommendations = (token) => {
   })
 }
 
+const warmApi = () => {
+  return fetch(`${url}/games/`)
+}
+
 export default {
   fetchGameByIgdbId: fetchGameByIgdbId,
   fetchGameById: fetchGameById,
@@ -95,4 +99,5 @@ export default {
   fetchRatingsById: fetchRatingsById,
   fetchAverageRating: fetchAverageRating,
   fetchRecommendations: fetchRecommendations,
+  warmApi: warmApi,
 }

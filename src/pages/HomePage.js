@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import GameList from '../components/GameList/GameList'
 import IgdbAPI from '../api/IgdbAPI'
+import RatingsAPI from '../api/RatingsAPI'
 import './HomePage.css'
 class HomePage extends Component {
   componentDidMount = () => {
@@ -8,6 +9,7 @@ class HomePage extends Component {
       .then(jsonResponse => this.props.setGames(jsonResponse))
     IgdbAPI.fetchComingSoon()
       .then(jsonResponse => this.props.setComingGames(jsonResponse))
+    RatingsAPI.warmApi()
   }
 
   render() {
