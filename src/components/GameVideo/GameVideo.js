@@ -21,10 +21,10 @@ class GameVideo extends Component {
     if (prevProps.name !== this.props.name) {
       this.setState({videoIds: []}, () => {
         YouTubeAPI.fetchVideoByKeyword(this.props.name + ' trailer')
-          .then(jsonResponse => jsonResponse.items.map(item => {this.setState({videoIds: [...this.state.videoIds, item.id.videoId]})}))
+          .then(jsonResponse => jsonResponse.items && jsonResponse.items.map(item => {this.setState({videoIds: [...this.state.videoIds, item.id.videoId]})}))
           .then(_res => {
             YouTubeAPI.fetchVideoByKeyword(this.props.name + ' gameplay')
-              .then(jsonResponse => jsonResponse.items.map(item => {this.setState({videoIds: [...this.state.videoIds, item.id.videoId]})}))
+              .then(jsonResponse => jsonResponse.items && jsonResponse.items.map(item => {this.setState({videoIds: [...this.state.videoIds, item.id.videoId]})}))
           })
       })
     }

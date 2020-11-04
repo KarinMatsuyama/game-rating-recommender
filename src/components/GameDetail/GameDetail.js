@@ -78,7 +78,7 @@ class GameDetail extends Component {
           </Media.Body>
         </Media>
         <h2 className="similarGames">SIMILAR GAMES</h2>
-        <GameList games={this.state.games} />
+        <GameList games={this.state.games ? this.state.games : []} />
       </div>
     )
   }
