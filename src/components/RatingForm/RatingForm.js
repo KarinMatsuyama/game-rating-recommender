@@ -87,7 +87,7 @@ class RatingForm extends Component {
     return (
       <div className="formDiv mt-5 mx-5 text-left">
         {!this.props.token && <Redirect to="/login" />}
-        {this.state.ratingSaved && <Redirect to={`/games/${this.state.igdbId}`} />}
+        {this.state.ratingSaved && <Redirect to={`/game/${this.state.igdbId}`} />}
         {this.state.hasRated && <Redirect to={`/edit-rating/${this.state.igdbId}/${this.state.ratingId}`} />}
         <h2>Leave Your Rating</h2>
         <Form className="py-4" onSubmit={(event) => this.saveForm(event)}>
