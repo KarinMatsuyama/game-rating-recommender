@@ -147,10 +147,10 @@ class GamePage extends Component {
         </Nav>
 
         {this.state.ratingGameId !== null && 
-          <GameDetail token={this.props.token} ratingGameId={this.state.ratingGameId} name={this.state.name} criticRating={this.state.criticRating} releaseDate={this.state.releaseDate} summary={this.state.summary} coverId={this.state.coverId} genres={this.state.genres.map(genreObj => genreObj.name)} platforms={this.state.platforms.map(platformObj => platformObj.name)} similarGameIds={this.state.similarGameIds} />
+          <GameDetail token={this.props.token} ratingGameId={this.state.ratingGameId} name={this.state.name} criticRating={this.state.criticRating} releaseDate={this.state.releaseDate} summary={this.state.summary} coverId={this.state.coverId} genres={this.state.genres ? this.state.genres.map(genreObj => genreObj.name) : []} platforms={this.state.platforms ? this.state.platforms.map(platformObj => platformObj.name) : []} similarGameIds={this.state.similarGameIds} />
         }
 
-        {!this.state.hasRated && <Button className="mt-5 mb-4 font-weight-bold" variant="light" size="lg" block><Link className="link" to={{pathname: `/rate-game/${this.state.gameId}`, state:{name: this.state.name, criticRating: this.state.criticRating, genres: this.state.genres.map(genreObj => genreObj.name), platforms: this.state.platforms.map(platformObj => platformObj.name)}}}>RATE THIS GAME</Link></Button>}
+        {!this.state.hasRated && <Button className="mt-5 mb-4 font-weight-bold" variant="light" size="lg" block><Link className="link" to={{pathname: `/rate-game/${this.state.gameId}`, state:{name: this.state.name, criticRating: this.state.criticRating, genres: this.state.genres ? this.state.genres.map(genreObj => genreObj.name) : [], platforms: this.state.platforms ? this.state.platforms.map(platformObj => platformObj.name) : []}}}>RATE THIS GAME</Link></Button>}
 
         {this.state.hasRated && <Button className="mt-5 mb-4 font-weight-bold" variant="light" size="lg" block><Link className="link" to={`/edit-rating/${this.state.gameId}/${this.state.ratingId}`}>EDIT / DELETE YOUR RATING</Link></Button>}
 
